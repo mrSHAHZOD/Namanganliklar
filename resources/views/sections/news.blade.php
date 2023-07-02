@@ -3,7 +3,7 @@
         <div class="container">
           <div class="news__wrapper basic-flex">
             <div class="column-news">
-              <h2 class="news__title">Последние новости</h2>
+              <h2 class="news__title">Последние новости news</h2>
               <ul class="news__list basic-flex">
                 <li class="news__item">
                   <a href="#" class="basic-flex news__link">

@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\PostController;
+use App\Http\Controllers\admin\NewsController;
+use App\Http\Controllers\admin\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,22 +21,16 @@ use App\Http\Controllers\admin\AdminController;
 */
 
 
-Route::get('/',[SiteController::class,'welcome']);
+/* Route::get('/',[SiteController::class,'welcome']);
 Route::get('/article',[SiteController::class,'article']);
 Route::get('/contact',[SiteController::class,'contact']);
 Route::get('/list',[SiteController::class,'list']);
-
-
-
-
-/*
-
-Route::prefix('admin/')->name('admin.')->middleware(['auth','admin'])->group(function(){
-    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-
-
-});
  */
+
+
+ Route::get('/',[SiteController::class,'welcome']);
+ Route::auto('/', SiteController::class,);
+
 
 
 
@@ -40,8 +38,24 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth','admin'])->group(fun
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+
+/* Route::prefix('admin/')->name('admin.')->middleware(['auth','admin'])->group(function(){
+ */
+
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+/* admin panel start*/
+
+    Route::resources([
+
+        '/posts' => PostController::class,
+        '/news'  => NewsController::class,
+        '/category'  => CategoryController::class,
+
+    ]);
+/*
+}); */
 
 
 
