@@ -2,7 +2,7 @@
     <a href="dashboard" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
     <a href="posts" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Posts</a>
     <a href="/news" class="nav-item nav-link"><i class="fa fa-th me-2"></i>News</a>
-    <a href="/category" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Category</a>
+    <a href="/menyu" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Menyu</a>
 
     </div>
 </div>

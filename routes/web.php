@@ -7,7 +7,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\NewsController;
-use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\MenyuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard
 
         '/posts' => PostController::class,
         '/news'  => NewsController::class,
-        '/category'  => CategoryController::class,
+        '/menyu'  => MenyuController::class,
 
     ]);
 /*

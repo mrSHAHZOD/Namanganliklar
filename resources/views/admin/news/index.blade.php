@@ -1,9 +1,6 @@
 @extends('admin.layouts.main
 ')
 
-@section('posts')
-    active
-@endsection
 
 @section('content')
     <section class="section">
