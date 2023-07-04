@@ -7,7 +7,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\NewsController;
-use App\Http\Controllers\admin\MenyuController;
+use App\Http\Controllers\admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,30 +32,24 @@ Route::get('/list',[SiteController::class,'list']);
  Route::auto('/', SiteController::class,);
 
 
+ Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function()
+ {
+     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+     Route::resources([
+         '/categories' => CategoryController::class,
+         '/posts' => PostController::class,
+         '/news' => NewsController::class,
+
+     ]);
+ });
+
 
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-/* Route::prefix('admin/')->name('admin.')->middleware(['auth','admin'])->group(function(){
- */
-
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-
-/* admin panel start*/
-
-    Route::resources([
-
-        '/posts' => PostController::class,
-        '/news'  => NewsController::class,
-        '/menyu'  => MenyuController::class,
-
-    ]);
-/*
-}); */
 
 
 

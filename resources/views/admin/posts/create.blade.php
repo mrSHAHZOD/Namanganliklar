@@ -6,78 +6,64 @@
 
 @section('content')
 
+    <div class="col-sm-12 col-xl-12">
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <section class="section">
-        <div class="section-body">
+        <div class="col-sm-12 col-sm-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Ma'lumot qo`shish</h6>
+                <div class="bg-light rounded h-100 p-4">
+                    <form action="{{ route('admin.posts.store') }}" method="POST">
+                        @csrf
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Post qo'shish</h4>
+                        <div class="mb-3">
+                            <label class="form-label">posts Uz</label>
+                            <input type="text" name="title_uz" value="{{ old('title_uz') }}" class="form-control">
+                            @error('title_uz')
+                                {{ $message }}
+                            @enderror
                         </div>
-                        <div class="card-body">
-                            <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
 
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Post Nomi
-                                        Uz</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control" name="title_uz"
-                                            value="{{ old('title_uz') }}">
-                                        @error('title_uz')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-4">
-                                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Post Nomi
-                                      RU</label>
-                                  <div class="col-sm-12 col-md-7">
-                                      <input type="text" class="form-control" name="title_ru"
-                                          value="{{ old('title_ru') }}">
-                                      @error('title_ru')
-                                          <div class="alert alert-danger">{{ $message }}</div>
-                                      @enderror
-                                  </div>
-                              </div>
-
-                              <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Data</label>
-                                <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control" name="data"
-                                        value="{{ old('data') }}">
-                                    @error('data')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <div class="mb-3">
+                            <label class="form-label">posts Uz</label>
+                            <input type="text" name="title_ru" value="{{ old('title_ru') }}" class="form-control">
+                            @error('title_ru')
+                                {{ $message }}
+                            @enderror
                         </div>
-                    </div>
+
+
+
+                        <div class="mb-3">
+                            <label class="form-label">posts Uz</label>
+                            <input type="text" name="img" value="{{ old('img') }}" class="form-img">
+                            @error('img')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">posts Uz</label>
+                            <input type="date" name="data" value="{{ old('data') }}" class="form-control">
+                            @error('data')
+                                {{ $message }}
+                            @enderror
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Qo`shish</button>
+                    </form>
                 </div>
             </div>
-
         </div>
-    </section>
-
+    </div>
 @endsection

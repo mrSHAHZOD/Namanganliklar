@@ -5,59 +5,55 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-
     public function index()
     {
-        $news = News::orderBy('id', 'DESC')->get();
+        $news = DB::table('news')->orderBy('id', 'DESC')->get();
+
         return view('admin.news.index', compact('news'));
     }
 
-
     public function create()
     {
-
         return view('admin.news.create');
     }
 
-
     public function store(Request $request)
     {
-        News::create($request->all());
+        news::create($request->all());
 
-       
-        return redirect()->route('admin.news.index');
+        return redirect()->route('admin.news.index')->with('success', 'Malumot muvaffaqiyatli qoshildi');
     }
 
-
-    public function show(News $news)
+    public function show($id)
     {
-        return view('admin.news.show');
+        $news = news::find($id);
+
+        return view('admin.news.show', compact('news'));
     }
 
-
-    public function edit(News $news)
+    public function edit($id)
     {
-        return view('admin.news.edit');
+        $news = news::find($id);
+
+        return view('admin.news.edit', compact('news'));
     }
 
-
-    public function update(Request $request, News $news)
+    public function update(Request $request, $id)
     {
-        Post::find($id)->update($request->all());
+        news::find($id)->update($request->all());
 
         return redirect()->route('admin.news.index')->with('success', 'Malumot mavaffaqiyatli ozgartirildi');
-
     }
 
-
-    public function destroy(News $news)
+    public function destroy($id)
     {
-        Post::find($id)->delete();
+        news::find($id)->delete();
 
-        return redirect()->route('admin.posts.index')->with('success', 'Malumot mavaffaqiyatli ochirildi');
-
+        return redirect()->route('admin.news.index')->with('danger', 'Malumot mavaffaqiyatli ochirildi');
     }
+
 }

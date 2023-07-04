@@ -1,40 +1,43 @@
-@extends('admin.layouts.layout')
+@extends('admin.layouts.main')
 
-@section('posts')
-active
+@section('news')
+    active
 @endsection
 
 @section('content')
-<section class="section">
-    <div class="section-body">
-      <div class="row">
-        <div class="col-12">
-
-          <div class="card">
-            <div class="card-header">
-              <h4>Show Product</h4>
-              <a href="{{ route('admin.posts.index') }}" class="btn btn-primary" style="position:absolute; right:50;">Back</a>
-            </div>
-
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-striped" id="table-1">
-                  <thead>
-                   {{--  <tr>
-                        <td>post: </td>
-                        <td><b>{{ $post->title }}</b></td>
-                    </tr>
-                    <tr>
-                        <td>Muallif: </td>
-                        <td><b>{{ $post->category->name }}</b></td>
-                    </tr> --}}
-                </table>
-              </div>
-            </div>
-          </div>
+    <div class="col-sm-12 col-xl-12">
+        <div class="bg-light rounded h-100 p-4">
+            <h6 class="mb-4">Show product</h6>
+            <a href="{{ route('admin.news.index') }}">
+                <button type="button" class="btn btn-primary"> <i class="fas fa-home"></i></button>
+            </a>
         </div>
-      </div>
-    </div>
-  </section>
 
+        <table class="table table-striped" id="table-1">
+            <thead>
+                <tr>
+                    <td>news uz: </td>
+                    <td><b>{{ $news->title_uz }}</b></td>
+                </tr>
+
+                <tr>
+                    <td>news ru: </td>
+                    <td><b>{{ $news->title_ru }}</b></td>
+                </tr>
+                <tr>
+                    <td>news ru: </td>
+                    <td><b>{{ $news->short_content_uz }}</b></td>
+                </tr>
+                <tr>
+                    <td>news ru: </td>
+                    <td><b>{{ $news->short_content_ru }}</b></td>
+                </tr>
+                <tr>
+                    <td>news ru: </td>
+                    <td><b>{{ $news->data }}</b></td>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
 @endsection

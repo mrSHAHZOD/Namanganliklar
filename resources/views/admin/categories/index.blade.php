@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('news')
+@section('categories')
     active
 @endsection
 
@@ -22,9 +22,9 @@
         @endif
 
         <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">news</h6>
+            <h6 class="mb-4">Categories</h6>
             <div style=" right: 50;">
-                <a href="{{ route('admin.news.create') }}">
+                <a href="{{ route('admin.categories.create') }}">
                     <button type="button" class="btn btn-primary"> Create </button>
                 </a>
             </div>
@@ -33,43 +33,35 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Title uz</th>
-                        <th scope="col">Title ru</th></th>
-                        <th scope="col">short_content_uz</th>
-                        <th scope="col">short_content_ru</th>
-                        <th scope="col">Time</th>
+                        <th scope="col">Name_uz</th>
+                        <th scope="col">Name_ru</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @if (count($news) == 0)
+                    @if (count($categories) == 0)
                         <tr>
                             <td colspan="5" class="h5 text-center text-muted">Ma'lumot qo'shilmagan
                             </td>
                         </tr>
                     @endif
 
-                    @foreach ($news as $news)
+                    @foreach ($categories as $category)
                         <tr>
                             <th scope="row">{{ ++$loop->index }}</th>
-                            <td>{{ $news->title_uz }}</td>
-                            <td>{{ $news->title_ru }}</td>
-                            <td>{{ $news->short_content_uz }}</td>
-                            <td>{{ $news->short_content_uz }}</td>
-                            <td>{{ $news->data }}</td>
-                            
-
+                            <td>{{ $category->name_uz }}</td>
+                            <td>{{ $category->name_ru }}</td>
 
                             <td>
-                                <form action="{{ route('admin.news.destroy', $news->id) }} " method="POSt">
+                                <form action="{{ route('admin.categories.destroy', $category->id) }} " method="POSt">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('admin.news.show', $news->id) }}">
+                                    <a href="{{ route('admin.categories.show', $category->id) }}">
                                         <button type="button" class="btn btn-square btn-info m-2"><i
                                                 class="fas fa-eye"></i></button>
                                     </a>
-                                    <a href="{{ route('admin.news.edit', $news->id) }}">
+                                    <a href="{{ route('admin.categories.edit', $category->id) }}">
                                         <button type="button" class="btn btn-square btn-primary m-2"><i
                                                 class="far fa-edit"></i></button>
                                     </a>

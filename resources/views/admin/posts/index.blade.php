@@ -1,147 +1,93 @@
 @extends('admin.layouts.main')
 
-@section('posts')
+@section('news')
     active
 @endsection
 
 @section('content')
-    <section class="section">
-        <div class="section-body">
-            <div class="row">
-                <div class="col-12">
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
+    <div class="col-sm-12 col-xl-12">
 
-                    @if ($message = Session::get('danger'))
-                        <div class="alert alert-danger">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-
-
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Maqolalar</h4>
-                            <a href="{{ route('posts.create') }}" class="btn btn-primary"
-                                style="position:absolute; right:50;">Create</a>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped" id="table-1">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">
-                                                #
-                                            </th>
-                                            <th>img </th>
-                                            <th>title UZ</th>
-                                            <th>title RU</th>
-                                            <th>Data</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if (count($posts) == 0)
-                                            <tr>
-                                                <td colspan="5" class="h5 text-center text-muted">Ma'lumot qo'shilmagan
-                                                </td>
-                                            </tr>
-                                        @endif
-
-                                        @foreach ($posts as $post)
-                                            <tr>
-                                                <td>
-                                                    {{ ++$loop->index }}
-                                                </td>
-                                                <td>{{ $post->img }}</td>
-                                                <td>{{ $post->title_uz }}</td>
-                                                <td>{{ $post->title_ru }}</td>
-                                                <td>{{ $post->data }}</td>
-                                                <td>
-                                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">
-                                                            <ion-icon class="fas fa-info-circle"></ion-icon>
-                                                        </a>
-                                                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">
-                                                            <ion-icon class="far fa-edit"></ion-icon>
-                                                        </a>
-                                                        <button class="btn btn-danger"
-                                                            onclick="return confirm('Rostdan o`chirmoqchimisiz ?')">
-                                                            <ion-icon class="fas fa-times"></ion-icon>
-                                                        </button>
-                                                    </form>
-                                                </td>
-
-                                            </tr>
-                                        @endforeach
-                                        g
-                                    </tbody>
-                                </table>
-                                {{--      {{ $posts->links() }} --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fa fa-exclamation-circle me-2"></i>{{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+        @endif
+
+        @if ($message = Session::get('danger'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fa fa-exclamation-circle me-2"></i>{{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        <div class="bg-light rounded h-100 p-4">
+            <h6 class="mb-4">news</h6>
+            <div style=" right: 50;">
+                <a href="{{ route('admin.news.create') }}">
+                    <button type="button" class="btn btn-primary"> Create </button>
+                </a>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title uz</th>
+                        <th scope="col">Title ru</th></th>
+                        <th scope="col">short_content_uz</th>
+                        <th scope="col">short_content_ru</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (count($news) == 0)
+                        <tr>
+                            <td colspan="5" class="h5 text-center text-muted">Ma'lumot qo'shilmagan
+                            </td>
+                        </tr>
+                    @endif
+
+                    @foreach ($news as $news)
+                        <tr>
+                            <th scope="row">{{ ++$loop->index }}</th>
+                            <td>{{ $news->title_uz }}</td>
+                            <td>{{ $news->title_ru }}</td>
+                            <td>{{ $news->short_content_uz }}</td>
+                            <td>{{ $news->short_content_uz }}</td>
+                            <td>{{ $news->data }}</td>
+                            
+
+
+                            <td>
+                                <form action="{{ route('admin.news.destroy', $news->id) }} " method="POSt">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ route('admin.news.show', $news->id) }}">
+                                        <button type="button" class="btn btn-square btn-info m-2"><i
+                                                class="fas fa-eye"></i></button>
+                                    </a>
+                                    <a href="{{ route('admin.news.edit', $news->id) }}">
+                                        <button type="button" class="btn btn-square btn-primary m-2"><i
+                                                class="far fa-edit"></i></button>
+                                    </a>
+
+                                    <button class="btn btn-danger" onclick="return confirm('Rostdan o`chirmoqchimisiz ?')">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+
+                                </form>
+                            </td>
+
+                        </tr>
+                    @endforeach
+
+                </tbody>
+
+            </table>
+
         </div>
-    </section>
-@endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- @extends('admin.layouts.main')
-@section('content')
-<div class="col-sm-12 col-xl-12">
-    <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">Accented Table</h6>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">title</th>
-                    <th scope="col">content</th>
-                    <th scope="col">img</th>
-                    <th scope="col-1">action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jhon@email.com</td>
-                    <td>salom</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
-</div>
 @endsection
- --}}

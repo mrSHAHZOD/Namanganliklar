@@ -1,10 +1,12 @@
-@extends('admin.layouts.layout')
+@extends('admin.layouts.main')
 
-@section('posts')
+@section('news')
     active
 @endsection
+
 @section('content')
- @if ($errors->any())
+
+    @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
             <ul>
@@ -14,90 +16,56 @@
             </ul>
         </div>
     @endif
-    <section class="section">
-        <div class="section-body">
+    <!-- MAIN -->
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Edit</h4>
-                        </div>
-                        <div class="card-body">
-                            <form action="{{ route('admin.posts.update', $post->id) }}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name UZ</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control" name="name"
-                                            value="{{ $post->name }}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-4">
-                                    <label
-                                        class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kategoriyasi</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <select name="category_id" class="form-control">
-                                            <option value="{{ $post->category_id }}">{{ $post->category->name}}</option>
-                                            @foreach ($categories as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ma'lumotlar
-                                    </label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <textarea class="summernote" name="info" value="{!! $post->info !!}">{!! $post->info !!}</textarea>
-                                        @error('info')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Muallif </label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control" name="owner"
-                                            value="{{ $post->owner }}">
-                                        @error('owner')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Rasm</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div id="image-preview" class="image-preview">
-                                            <label for="image-upload" id="image-label">Rasm tanlang</label>
-                                            <input type="file" name="img" id="image-upload" />
-                                        </div>
-                                        <img alt="image" src="/images/{{ $post->img }}" width="59">
-                                    </div>
-
-                                </div>
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>O'zgartirish</h3>
+                <a href="{{ route('admin.news.index') }}">
+                    <button type="button" class="btn btn-outline-dark m-2">Qaytish</button>
+                </a>
             </div>
 
-        </div>
-    </section>
+            <form class="create__inputs" action="{{ route('admin.news.update', $news->id) }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
+                <strong> news uz:</strong>
+                <input type="text" name="title_uz" value="{{ $news->title_uz }}" class="form-control"> <br>
+                @error('title_uz')
+                    {{ $message }}
+                @enderror
+
+                <strong> news uz:</strong>
+                <input type="text" name="title_ru" value="{{ $news->title_ru }}" class="form-control"> <br>
+                @error('title_ru')
+                    {{ $message }}
+                @enderror
+
+                <strong> news uz:</strong>
+                <input type="text" name="short_content_uz" value="{{ $news->short_content_uz }}" class="form-control"> <br>
+                @error('short_content_uz')
+                    {{ $message }}
+                @enderror
+
+                <strong> news uz:</strong>
+                <input type="text" name="short_content_ru" value="{{ $news->short_content_ru }}" class="form-control"> <br>
+                @error('short_content_ru')
+                    {{ $message }}
+                @enderror
+
+                <strong> news ru:</strong>
+                <input type="data" name="name_ru" value="{{ $news->data }}" class="form-control"> <br>
+                @error('data')
+                    {{ $message }}
+                @enderror
+
+                <input type="submit" value="O'zgartirish">
+
+            </form>
+        </div>
+    </div>
+    <!-- MAIN -->
 @endsection
