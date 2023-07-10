@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\NewsController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,29 +22,24 @@ use App\Http\Controllers\admin\CategoryController;
 */
 
 
-/* Route::get('/',[SiteController::class,'welcome']);
-Route::get('/article',[SiteController::class,'article']);
-Route::get('/contact',[SiteController::class,'contact']);
-Route::get('/list',[SiteController::class,'list']);
- */
+Route::get('/', function () {
+    return view('welcome');
+});
 
+Route::auto('/', SiteController::class);
 
- Route::get('/',[SiteController::class,'welcome']);
- Route::auto('/', SiteController::class,);
+Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function()
+{
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-
- Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function()
- {
-     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-
-     Route::resources([
-         '/categories' => CategoryController::class,
-         '/posts' => PostController::class,
-         '/news' => NewsController::class,
-
-     ]);
- });
-
+    Route::resources([
+        '/categories' => CategoryController::class,
+        '/posts' => PostController::class,
+        '/messages' => MessageController::class,
+        // '/logins' => LoginController::class,
+        // '/audits' => AuditController::class,
+    ]);
+});
 
 
 

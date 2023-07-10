@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function get_index()
     {
         $news = DB::table('news')->orderBy('id', 'DESC')->get();
 
         return view('admin.news.index', compact('news'));
     }
 
-    public function create()
+    public function get_create()
     {
         return view('admin.news.create');
     }

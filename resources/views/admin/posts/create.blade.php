@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">posts Uz</label>
+                            <label class="form-label">posts Uz   </label>
                             <input type="text" name="title_ru" value="{{ old('title_ru') }}" class="form-control">
                             @error('title_ru')
                                 {{ $message }}
@@ -46,19 +46,42 @@
 
                         <div class="mb-3">
                             <label class="form-label">posts Uz</label>
-                            <input type="text" name="img" value="{{ old('img') }}" class="form-img">
+                            <input type="file" name="img" value="{{ old('img') }}" class="form-img">
                             @error('img')
                                 {{ $message }}
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">posts Uz</label>
-                            <input type="date" name="data" value="{{ old('data') }}" class="form-control">
-                            @error('data')
+                            <input type="text" name="category_id" value="{{ old('category_id') }}" class="form-control">
+                            @error('category_id')
                                 {{ $message }}
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label">posts Uz</label>
+                            <input type="text" name="body_uz" value="{{ old('body_uz') }}" class="form-control">
+                            @error('body_uz')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">posts Uz</label>
+                            <input type="text" name="body_ru" value="{{ old('body_ru') }}" class="form-control">
+                            @error('body_ru')
+                                {{ $message }}
+                            @enderror
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">posts Uz</label>
+                            <input type="text" name="views" value="{{ old('views') }}" class="form-control">
+                            @error('views')
+                                {{ $message }}
+                            @enderror
+                        </div>
 
                         <button type="submit" class="btn btn-primary">Qo`shish</button>
                     </form>

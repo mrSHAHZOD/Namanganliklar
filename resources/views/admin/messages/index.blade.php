@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('posts')
+@section('messages')
     active
 @endsection
 
@@ -22,61 +22,52 @@
         @endif
 
         <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">posts</h6>
-            <div style=" right: 50;">
-                <a href="{{ route('admin.posts.create') }}">
-                    <button type="button" class="btn btn-primary"> Create </button>
-                </a>
-            </div>
+            <h6 class="mb-4">Messages</h6>
 
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Title uz</th>
-                        <th scope="col">Title ru</th></th>
-                        <th scope="col">img</th>
-                        <th scope="col">Category id</th>
-                        <th scope="col">body_uz</th>
-                        <th scope="col">body_ru</th>
-                        <th scope="col">views</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @if (count($posts) == 0)
+                    @if (count($messages) == 0)
                         <tr>
                             <td colspan="5" class="h5 text-center text-muted">Ma'lumot qo'shilmagan
                             </td>
                         </tr>
                     @endif
 
-                    @foreach ($posts as $post)
+                    @foreach ($messages as $item)
                         <tr>
                             <th scope="row">{{ ++$loop->index }}</th>
-                            <td>{{ $post->title_uz }}</td>
-                            <td>{{ $post->title_ru }}</td>
-                            <td>{{ $post->img }}</td>
-                            <td>{{ $post->category_id }}</td>
-                            <td>{{ $post->body_uz }}</td>
-                            <td>{{ $post->body_ru }}</td>
-                            <td>{{ $post->views }}</td>
-
-
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->number }}</td>
+                            <td>
+                                @if ($item->status == 0)
+                                    <font style="color: red"> O`qilmagan</font>
+                                @else
+                                    <font style="color: green">O`qilgan</font>
+                                @endif
+                            </td>
 
                             <td>
-                                <form action="{{ route('admin.posts.destroy', $post->id) }} " method="POSt">
+                                <form action="{{ route('admin.messages.destroy', $item->id) }} " method="POSt">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('admin.posts.show', $post->id) }}">
+                                    <a href="{{ route('admin.messages.show', $item->id) }}">
                                         <button type="button" class="btn btn-square btn-info m-2"><i
                                                 class="fas fa-eye"></i></button>
                                     </a>
-                                    <a href="{{ route('admin.posts.edit', $post->id) }}">
+                                    {{-- <a href="{{ route('admin.categories.edit', $category->id) }}">
                                         <button type="button" class="btn btn-square btn-primary m-2"><i
                                                 class="far fa-edit"></i></button>
-                                    </a>
+                                    </a> --}}
 
                                     <button class="btn btn-danger" onclick="return confirm('Rostdan o`chirmoqchimisiz ?')">
                                         <i class="fas fa-times"></i>
