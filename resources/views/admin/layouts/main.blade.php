@@ -62,57 +62,65 @@
                     <input class="form-control border-0" type="search" placeholder="Search">
                 </form>
                 @php
-                    $messages = DB::table('messages')->latest()->where('status',0)->take(4)->get();
+
+                    $messages = DB::table('messages')->latest()->where('status', 0)->take(4)->get();
+                    $audits = DB::table('audits')->latest()->where('status', 0)->take(3)->get();
+
                 @endphp
+
+
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-envelope me-lg-2"></i>
+                            <span class="cart-item-count wishlist-item-count" style="color: red">
+                                {{ (count($messages)) }}
+
+                            </span>
                             <span class="d-none d-lg-inline-flex">Message</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
 
 
-                            @foreach ($messages as $item )
-                            <a href="{{ route('admin.messages.show', $item->id) }}" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="/admin/assets/img/user.jpg" alt=""
-                                        style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">{{ $item->name }}</h6>
-                                        <small>{{ $item->created_at }}</small>
+                            @foreach ($messages as $item)
+                                <a href="{{ route('admin.messages.show', $item->id) }}" class="dropdown-item">
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle" src="/admin/assets/img/user.jpg" alt=""
+                                            style="width: 40px; height: 40px;">
+                                        <div class="ms-2">
+                                            <h6 class="fw-normal mb-0">{{ $item->name }}</h6>
+                                            <small>{{ $item->created_at }}</small>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
+                                </a>
+                                <hr class="dropdown-divider">
                             @endforeach
-
                             <hr class="dropdown-divider">
                             <a href="/admin/messages/" class="dropdown-item text-center">See all message</a>
                         </div>
                     </div>
+
+
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
+                            <span class="cart-item-count wishlist-item-count" style="color: red">
+                                {{ (count($audits)) }}
+
+                            </span>
                             <span class="d-none d-lg-inline-flex">Notificatin</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            @foreach ($audits as $audit)
                             <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
+                                <h6 class="fw-normal mb-0">{{ $audit->username }} {{ $audit->event }}</h6>
+                                <small>{{ $audit->updated_at }}</small>
                             </a>
+
                             <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                            @endforeach
+                            <a href="/admin/audits/" class="dropdown-item text-center">See all notifications</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">

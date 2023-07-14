@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-use App\Events\AuditEvent;
 use App\Http\Controllers\Controller;
+use App\Events\AuditEvent;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
@@ -26,10 +26,10 @@ class MessageController extends Controller
 
     public function destroy(Message $message)
     {
-        $user = auth()->user()->name;
-        event(new AuditEvent('create', 'messages', $user, $message));
 
-        // Message::find($id)->delete();
+        $user = auth()->user()->name;
+        event(new AuditEvent('delete', 'messages', $user, $message));
+        
         $message->delete();
 
         return redirect()->route('admin.messages.index')->with('danger', 'Malumot mavaffaqiyatli ochirildi');

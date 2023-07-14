@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Listeners;
+
 use App\Events\AuditEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\DB;
 
-class AuditEventListner
+class AuditEventListener
 {
     /**
      * Create the event listener.
@@ -30,7 +31,8 @@ class AuditEventListner
             'event' => $event->event,
             'tablename' => $event->table,
             'username' => $event->user,
-            'data'=> $event->data
+            'data' => $event->data,
+            'status' => 0,
         ]);
 
     }

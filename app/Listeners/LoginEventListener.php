@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Listeners;
+use App\Events\LoginEvent;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -26,7 +27,7 @@ class LoginEventListener
      */
     public function handle(LoginEvent $event)
     {
-        DB::table('userinfos')->insert([
+        DB::table('userblogs')->insert([
             'username' => $event->user,
             'date' => date('Y-m-d H:i:s'),
         ]);

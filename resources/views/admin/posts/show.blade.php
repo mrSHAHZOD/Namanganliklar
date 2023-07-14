@@ -17,20 +17,20 @@
             <thead>
                 <tr>
                     <td>posts uz: </td>
-                    <td><b>{{ $post->title_uz }}</b></td>
+                    <td><b>{{ $posts->title_uz }}</b></td>
                 </tr>
 
                 <tr>
                     <td>posts ru: </td>
-                    <td><b>{{ $post->title_ru }}</b></td>
+                    <td><b>{{ $posts->title_ru }}</b></td>
                 </tr>
                 <tr>
                     <td>IMG: </td>
-                    <td><b>{{ $post->img }}</b></td>
+                    <td><b>{{ $posts->img }}</b></td>
                 </tr>
                 <tr>
                     <td> catgory: </td>
-                    <td><b>{{ $post->category_id }}</b></td>
+                    <td><b>{{ $posts->category_id }}</b></td>
                 </tr>
                 <tr>
                     <td>posts ru: </td>

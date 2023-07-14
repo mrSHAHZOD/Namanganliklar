@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('messages')
+@section('audits')
     active
 @endsection
 
@@ -22,49 +22,51 @@
         @endif
 
         <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Messages</h6>
-
+            <h6 class="mb-4">Audits</h6>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Number</th>
+                        <th scope="col">event</th>
+                        <th scope="col">user</th>
+                        <th scope="col">table</th>
                         <th scope="col">Status</th>
+
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @if (count($messages) == 0)
+                    @if (count($audits) == 0)
                         <tr>
                             <td colspan="5" class="h5 text-center text-muted">Ma'lumot qo'shilmagan
                             </td>
                         </tr>
                     @endif
 
-                    @foreach ($messages as $item)
+                    @foreach ($audits as $audit)
                         <tr>
                             <th scope="row">{{ ++$loop->index }}</th>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->number }}</td>
+                            <td>{{ $audit->event }}</td>
+                            <td>{{ $audit->username }}</td>
+                            <td>{{ $audit->tablename }}</td>
                             <td>
-                                @if ($item->status == 0)
-                                    <font style="color: red"> O`qilmagan</font>
+                                @if ($audit->status == 0)
+                                    <font style="color: red">O`qilmagan</font>
                                 @else
                                     <font style="color: green">O`qilgan</font>
                                 @endif
                             </td>
 
+
                             <td>
-                                <form action="{{ route('admin.messages.destroy', $item->id) }} " method="POSt">
+                                <form action="{{ route('admin.audits.destroy', $audit->id) }} " method="POSt">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('admin.messages.show', $item->id) }}">
+                                    <a href="{{ route('admin.audits.show', $audit->id) }}">
                                         <button type="button" class="btn btn-square btn-info m-2"><i
                                                 class="fas fa-eye"></i></button>
                                     </a>
-                                   
 
                                     <button class="btn btn-danger" onclick="return confirm('Rostdan o`chirmoqchimisiz ?')">
                                         <i class="fas fa-times"></i>

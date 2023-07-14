@@ -42,4 +42,17 @@ class SiteController extends Controller
 
         return back()->with('success', 'Xabar jo`natildi');
     }
+  /*   public function post_audits(Request $request)
+    {
+        DB::table('audits')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'number' => $request->number,
+            'content' => $request->content,
+            'file' => $request->file,
+            'status' => 0,
+        ]);
+
+        return back()->with('success', 'Xabar jo`natildi');
+    } */
 }

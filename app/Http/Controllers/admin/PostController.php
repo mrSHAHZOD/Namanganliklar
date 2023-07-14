@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Events\AuditEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -35,7 +35,8 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('admin.posts.show');
+        $posts = Post::find($id);
+        return view('admin.posts.show'compact('posts'));
 
     }
 
@@ -51,17 +52,18 @@ class PostController extends Controller
     {
         Post::find($id)->update($request->all());
 
-        return redirect()->route('admin.posts.index')->with('success', 'Malumot mavaffaqiyatli ozgartirildi');
+        return redirect()->route('admin.posts.index')->with('danger', 'Malumot mavaffaqiyatli ozgartirildi');
 
     }
 
 
     public function destroy(Post $post)
     {
-        $user = auth()->name;
+        $user = auth()->user()->name;
         event(new AuditEvent('delete', 'posts', $user , $post));
-        $posts->delete;
 
+        // Post::find($id)->delete();
+        $post->delete();
         return redirect()->route('admin.posts.index')->with('success', 'Malumot mavaffaqiyatli ochirildi');
 
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\NewsController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\MessageController;
+use App\Http\Controllers\admin\AuditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\admin\MessageController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+*/  
 
 
 Route::get('/', function () {
@@ -36,8 +37,8 @@ Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function()
         '/categories' => CategoryController::class,
         '/posts' => PostController::class,
         '/messages' => MessageController::class,
-        // '/logins' => LoginController::class,
-        // '/audits' => AuditController::class,
+        '/logins' => LoginController::class,
+        '/audits' => AuditController::class,
     ]);
 });
 

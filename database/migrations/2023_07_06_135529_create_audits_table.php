@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('event')->nullable();
             $table->string('tablename')->nullable();
             $table->string('username')->nullable();
+            $table->integer('status')->nullable();
             $table->text('data')->nullable();
             $table->timestamps();
         });

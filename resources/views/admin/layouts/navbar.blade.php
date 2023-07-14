@@ -24,7 +24,8 @@
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                         class="fa fa-laptop me-2"></i>Elements</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                     <a href="{{ route('admin.messages.index') }}" class="nav-item nav-link @yield('massage')"><i class="fa fa-table me-2"></i>massages</a>
+                    <a href="{{ route('admin.messages.index') }}" class="nav-item nav-link @yield('massage')"><i class="fa fa-table me-2"></i>massages</a>
+                    <a href="{{ route('admin.audits.index') }}" class="nav-item nav-link @yield('audits')"><i class="fa fa-table me-2"></i>Audits</a>
                 </div>
             </div>
 
