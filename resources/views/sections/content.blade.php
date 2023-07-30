@@ -1,6 +1,31 @@
 <div class="container">
     <div class="news__wrapper basic-flex">
         <div class="article__wrapper">
+            <h2 class="article__title">{{ $post['title_uz'] }}
+            </h2>
+            <img width="600px" height="700px" src="/images/{{ $post->img }}">
+            <p class="important-text">
+                {{ $post['body_uz'] }}
+            </p>
+            <p>
+                {{ $post['body_uz'] }}
+            </p>
+
+            <div class="hashtags basic-flex">
+                <a href="#">#хоким</a>
+                <a href="#">#Шавкат Мирзиёев</a>
+                <a href="#">#пандемия</a>
+            </div>
+        </div>
+
+
+
+
+
+
+{{-- <div class="container">
+    <div class="news__wrapper basic-flex">
+        <div class="article__wrapper">
             <h2 class="article__title">Шавкат Мирзиёев строго предупредил хокимов всех уровней
             </h2>
             <span class="article__date basic-flex">11:31 / 15.05.2020</span>
@@ -55,3 +80,4 @@
                 <a href="#">#пандемия</a>
             </div>
         </div>
+ --}}

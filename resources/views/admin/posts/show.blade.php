@@ -34,15 +34,23 @@
                 </tr>
                 <tr>
                     <td>posts ru: </td>
-                    <td><b>{{ $post->body_uz }}</b></td>
+                    <td><b>{{ $posts->body_uz }}</b></td>
                 </tr>
                 <tr>
                     <td> body uz: </td>
-                    <td><b>{{ $post->body_uz }}</b></td>
+                    <td><b>{{ $posts->body_uz }}</b></td>
                 </tr>
                 <tr>
                     <td>body ru: </td>
-                    <td><b>{{ $post->views }}</b></td>
+                    <td><b>{{ $posts->views }}</b></td>
+                </tr>
+                <tr>
+                    <td>tags </td>
+                    <td><b>
+                        @foreach ($posts->tags as $tag)
+                        {{ $tag->name_uz }} <br>
+                        @endforeach
+                    </b></td>
                 </tr>
             </thead>
         </table>

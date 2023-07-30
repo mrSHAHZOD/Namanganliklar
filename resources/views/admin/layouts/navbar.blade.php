@@ -26,6 +26,7 @@
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('admin.messages.index') }}" class="nav-item nav-link @yield('massage')"><i class="fa fa-table me-2"></i>massages</a>
                     <a href="{{ route('admin.audits.index') }}" class="nav-item nav-link @yield('audits')"><i class="fa fa-table me-2"></i>Audits</a>
+                    <a href="{{ route('admin.tags.index') }}" class="nav-item nav-link @yield('tags')"><i class="fa fa-table me-2"></i>tags</a>
                 </div>
             </div>
 

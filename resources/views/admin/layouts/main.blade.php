@@ -61,12 +61,18 @@
                 <form class="d-none d-md-flex ms-4">
                     <input class="form-control border-0" type="search" placeholder="Search">
                 </form>
+
+
+
                 @php
 
-                    $messages = DB::table('messages')->latest()->where('status', 0)->take(4)->get();
                     $audits = DB::table('audits')->latest()->where('status', 0)->take(3)->get();
+                    $messages = DB::table('messages')->latest()->where('status', 0)->take(4)->get();
 
-                @endphp
+                   /*  massages va audits xabarlar soni */
+                    $sms = DB::table('messages')->latest()->where('status', 0)->get();
+                    $auto = DB::table('audits')->latest()->where('status', 0)->get();
+               @endphp
 
 
                 <div class="navbar-nav align-items-center ms-auto">
@@ -74,7 +80,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-envelope me-lg-2"></i>
                             <span class="cart-item-count wishlist-item-count" style="color: red">
-                                {{ (count($messages)) }}
+                                {{ (count($sms)) }}
 
                             </span>
                             <span class="d-none d-lg-inline-flex">Message</span>
@@ -106,7 +112,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
                             <span class="cart-item-count wishlist-item-count" style="color: red">
-                                {{ (count($audits)) }}
+                                {{ (count($auto)) }}
 
                             </span>
                             <span class="d-none d-lg-inline-flex">Notificatin</span>

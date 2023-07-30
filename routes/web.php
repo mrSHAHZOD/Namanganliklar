@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\NewsController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\MessageController;
 use App\Http\Controllers\admin\AuditController;
+use App\Http\Controllers\admin\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +21,15 @@ use App\Http\Controllers\admin\AuditController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/  
+*/
+
+Route::get('/', [SiteController::class, 'index'])->name('index');
+Route::get('/contact',[SiteController::class, 'contact'])->name('contact');
+Route::get('/posts/{id}', [SiteController::class, 'posts'])->name('posts');
+Route::get('/article/{id}',[SiteController::class,'article'])->name('article');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::auto('/', SiteController::class);
 
 Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function()
 {
@@ -39,6 +41,7 @@ Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function()
         '/messages' => MessageController::class,
         '/logins' => LoginController::class,
         '/audits' => AuditController::class,
+        '/tags' => TagController::class,
     ]);
 });
 
@@ -59,5 +62,21 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+/*
 
+avtolot  nimaga ishlatiladi
+Closure nima vazivani bajaradi
+ini_set  nimada ishlatiladi
+ :vold - unversal type
+Query bn EXsequyit
+$this statik funksiya uchun
+$self statik bolmagan
+null teskshiradigan funksiya   SNullable
+evekuent kursor
+soft delete nimaga ishlatiladi --- ochirilgan db vaqtinchalik xotiraga saqlaydi
+elequent model vazifasini bajaradi
+
+
+
+*/
 

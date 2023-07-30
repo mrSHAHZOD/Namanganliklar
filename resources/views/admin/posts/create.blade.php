@@ -23,11 +23,29 @@
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Ma'lumot qo`shish</h6>
                 <div class="bg-light rounded h-100 p-4">
-                    <form action="{{ route('admin.posts.store') }}" method="POST">
+                    <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
+                        <div class="col-sm-12 col-sm-12">
+                            <label class="form-label">Category Uz</label>
+                            <select class="form-select mb-3" name="category_id" >
+                                @foreach ($categories as $category )
+                                    <option value="{{ $category->id }}">{{ $category->name_uz }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-sm-12 col-sm-12">
+                            <label class="form-label">Tag</label>
+                            <select class="form-select mb-3" name="tag_id[]" multiple >
+                                @foreach ($tags as $postTag )
+                                    <option value="{{ $postTag->id }}">{{ $postTag->name_uz }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="mb-3">
-                            <label class="form-label">posts Uz</label>
+                            <label class="form-label">title Uz</label>
                             <input type="text" name="title_uz" value="{{ old('title_uz') }}" class="form-control">
                             @error('title_uz')
                                 {{ $message }}
@@ -52,22 +70,21 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">posts Uz</label>
+                            <label class="form-label">category id</label>
                             <input type="text" name="category_id" value="{{ old('category_id') }}" class="form-control">
                             @error('category_id')
                                 {{ $message }}
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">posts Uz</label>
-                            <input type="text" name="body_uz" value="{{ old('body_uz') }}" class="form-control">
+                        <div class="control-group mb-4">
+                            <textarea class="form-control p-4" rows="6" name="body_uz" placeholder="qisqacha mazmun">{{ old('short_content') }}</textarea>
                             @error('body_uz')
-                                {{ $message }}
-                            @enderror
-                        </div>
+                            <p class="help-block text-danger">{{ $message }}</p>
+                          @enderror
+                      </div>
                         <div class="mb-3">
-                            <label class="form-label">posts Uz</label>
+                            <label class="form-label">body ru</label>
                             <input type="text" name="body_ru" value="{{ old('body_ru') }}" class="form-control">
                             @error('body_ru')
                                 {{ $message }}

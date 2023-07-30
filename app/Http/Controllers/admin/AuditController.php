@@ -5,6 +5,7 @@ use App\Events\AuditEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Audit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuditController extends Controller
 { public function index()

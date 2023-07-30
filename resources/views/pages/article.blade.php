@@ -22,7 +22,7 @@
                 </h3>
                 {{-- postlar soni 3 ta bolishi kerak --}}
                 @include('sections.posts')
-                
+
             </div>
         </div>
     </div>

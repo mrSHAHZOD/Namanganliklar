@@ -6,11 +6,12 @@
     {{--    post start --}}
     <section class="posts">
       <div class="container">
-
+        <ul class="posts__list basic-flex">
     @include('sections.posts')
-
+        </ul>
   </div>
 </section>
+
     {{-- posts end --}}
     <div class="container">
         <div class="notification basic-flex">
