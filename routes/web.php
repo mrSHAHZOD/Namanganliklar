@@ -39,7 +39,7 @@ Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function()
         '/categories' => CategoryController::class,
         '/posts' => PostController::class,
         '/messages' => MessageController::class,
-        '/logins' => LoginController::class,
+        '/logins' => AuditController::class,
         '/audits' => AuditController::class,
         '/tags' => TagController::class,
     ]);
