@@ -14,11 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run():void
     {
-        \App\Models\Audit::factory(100)->create();
-        \App\Models\Category::factory(100)->create();
-        \App\Models\Message::factory(100)->create();
-        \App\Models\News::factory(100)->create();
-        \App\Models\Post::factory(100)->create();
+        $this->call([
+            RolePermissionSeeder::class,
+            UserSeeder::class,
+        ]);
+        \App\Models\Audit::factory(10)->create();
+        \App\Models\Category::factory(10)->create();
+        \App\Models\Message::factory(10)->create();
+        \App\Models\News::factory(10)->create();
+        \App\Models\Post::factory(10)->create();
 
         // \App\Models\User::factory(10)->create();
 

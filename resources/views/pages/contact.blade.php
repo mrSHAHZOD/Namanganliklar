@@ -16,9 +16,8 @@
                     <h3 class="form__wrapper-title">Напишите нам
                     </h3>
 
-                    <form method="POST" action="/messages">
+                    <form method="POST" action="{{ route('messages') }}" enctype="multipart/form-data">
                         @csrf
-                        @method('POST')
                         <div class="form__top">
                             <label><input type="text" placeholder="Имя" name="name" required></label>
                             <label><input type="email" placeholder="Электронная почта" name="email" required></label>

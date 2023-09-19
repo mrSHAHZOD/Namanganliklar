@@ -48,6 +48,22 @@ class SiteController extends Controller
     }
 
 
+    public function messages(Request $request)
+    {
+        DB::table('messages')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'number' => $request->number,
+            'content' => $request->content,
+            'file' => $request->file,
+            'status' => 0,
+        ]);
+
+         return back()->with('success', 'Xabar jo`natildi');
+    }
+
+
+
 
 
 

@@ -6,7 +6,7 @@ use App\Events\AuditEvent;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
-class MessageController extends Controller
+class 0 extends Controller
 {
     public function index()
     {
@@ -29,7 +29,7 @@ class MessageController extends Controller
 
         $user = auth()->user()->name;
         event(new AuditEvent('delete', 'messages', $user, $message));
-        
+
         $message->delete();
 
         return redirect()->route('admin.messages.index')->with('danger', 'Malumot mavaffaqiyatli ochirildi');

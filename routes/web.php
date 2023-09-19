@@ -27,6 +27,7 @@ Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/contact',[SiteController::class, 'contact'])->name('contact');
 Route::get('/posts/{id}', [SiteController::class, 'posts'])->name('posts');
 Route::get('/article/{id}',[SiteController::class,'article'])->name('article');
+Route::post('/messages', [SiteController::class, 'messages'])->name('messages');
 
 
 
